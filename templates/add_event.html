@@ -1,0 +1,56 @@
+{% load static %}
+{%load%}
+{% block content%}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Events</title>
+</head>
+<body>
+     <div class="header">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid" id="navfluid">
+                <div class="navbar-header" style="vertical-align:middle;">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!--heading /logo -->
+                    <a class="navbar-brand page-scroll" href="#page-top"><img style="max-width: 150px; margin-top:  -13px;"src="{% static 'img/logo2.png' %}" alt=""></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+               <div class="collapse navbar-collapse" id="navigationbar" style="padding-top:8px">
+                    <ul class="nav navbar-nav">
+                        <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                        <!--li class="hidden"><a href="#page-top"></a></li-->
+
+                        <li><a class="page-scroll" href="{% url 'home' %}"><b>Home</b></a></li>
+                        <li><a class="page-scroll" <button onclick="display(&#39;settings&#39;)"><b>Settings</b></a></li>
+                        <li><a class="page-scroll" <button onclick="display(&#39;users&#39;)"><b>Purchase History</b></a></button></a></li>
+                        <li><a class="page-scroll" <button onclick="display(&#39;events&#39;)"><b>Event Management</b></button></a></li>
+                        <li><a class="page-scroll" <button onclick="display(&#39;notifications&#39;)"><b>Notifications</b></button></a></li>
+                
+                        <li><a class="page-scroll" href="{% url 'add_event' %}"><b>Add Event</b></a></li>
+                    </ul>
+<form action = "{% url 'add'% }" method = "post" style=" background-image: url('static/img/about/3.jpg'); color: white;">
+    {% csrf_token%}
+    Event Name:- <input name="name" type="text"><br>
+    Event Type:- <input name="type" type="text"><br>
+    Event Venue :- <input name="venue" type="text"><br>
+    Event Time :- <input name="time" type="time"><br>
+    Event Date:- <input name="date" type="date"><br>
+    Event Artist :- <input name="artist" type="text"><br>
+    Event Capacity :- <input name="capacity" type="number"><br>
+    Event Price :- <input name="price" type="number"><br>
+    Event Description :- <input name="description" type="textarea"><br>
+    Event Poster :- <input name="poster" type="file"><br>
+    <input type="submit" value="Add event">
+</form>
+</body>
+</html>
+{% endblock%}

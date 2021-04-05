@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Settings</title>
+</head>
+<h1>
+{% include 'dashboard.html' %}
+
+{% block 'body' %}
+    {% for event in events%}
+
+                    <figure class="thumbnail col-lg-3 col-md-3" style=" background-color: #056e68;">
+                        <a href=""><img src="{{ event.Event_Poster.url }}" alt="Image" height="200px;" width="200px;"></a>
+                        <figcaption class="caption text-center">
+                            <h3>{{event.Event_Name}}</h3>
+                            <h4>Tickets Sold : {{event.Event_Tickets_Sold}}</h4>
+                            <h4 style="position: relative;">Seats Sold : {{event.Event_Seats_Sold}}</h4>
+                            <h4>Amount Earned : {% widthratio event.Event_Tickets_Sold 1 event.Event_Price %}</h4>
+                            <h4>Event Status : {{event.Event_Status}}</h4>
+                            {% if event.Event_Status == "InActive"%}
+                                <form action="{%url 'edit' event.Event_Unique_Id %}" method="get" >
+                   {% csrf_token%}
+                     <button type="submit" name="edit_event" value="{{event.Event_Unique_Id}}">Edit</button>
+                  </form>
+                            {% else%}
+                            <h4> Cannot edit while event is active. Contact Admin</h4>
+                            {% endif %}
+<!--                                <small>Singing</small></h3-->
+
+
+                        </figcaption>
+                    </figure>
+                    {% endfor %}
+{{user.}}</h1>
+{% endblock %}
+</body>
+</html>
+

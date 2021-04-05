@@ -1,0 +1,47 @@
+{%load static%}
+
+
+
+<!DOCTYPE html>
+<head>
+<style>
+.ticket {
+  background-color: lightgrey;
+  width: 300px;
+  border: 10px dashed black;
+  padding: 40px;
+  margin: 20px;
+}
+td {
+  font-size: 24px;
+}
+</style>
+</head>
+<body>
+
+<h2><Center>Payment Confirmation {{request.session.user_id}}</Center></h2>
+
+<center><div class="ticket">
+	<table>
+<th><h5>Dated :-{{ticket.Ticket_Registration_Time}}</h5>
+<strong><h3><tr><td>Name: </td><td>{{user.Name}} {{user.Surname}}</td></tr></h3></strong>
+<h3><tr><td>Date: </td><td>{{event.Event_Date}}</td></tr></h3>
+	<h3><tr><td>Time: </td><td>{{event.Event_Time}}</td></tr></h3>
+	<h3><tr><td>Event Name: </td><td>{{event.Event_Name}}</td></tr></h3>
+<h3><tr><td>Selected Seats: </td><td>{{ticket.Seat_no}}</td></tr></h3>
+<h3><tr><td>Total Price: </td><td>{{ticket.Payment_Amount}}</td></tr></h3>
+
+</tr>
+</th>
+</table>
+
+
+</div></center>
+<center><button onclick="window.print('ticket')"><b><h4><b>Print Ticket</b></h4></b></button></center>
+<h3>After successful payment</h3>
+<a href="{% url 'reserve' event.Event_Unique_Id %}" ><h4><b><button>Return</button></b></h4></a>
+</body>
+
+
+</html>
+{% include 'footer.html' %}

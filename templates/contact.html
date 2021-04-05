@@ -1,0 +1,43 @@
+{% load static %}
+{% include 'header.html' %}
+<div class="main" style="min-height:600px; background-image: url('static/img/about/contactus.jpg'); background-repeat: no-repeat; background-size: cover;">
+        
+<div class="container">
+    <br />
+    <div class="header text-left">
+        <div class="heading">
+            <h3>Contact Us</h3>
+        </div>
+       <!-- <div class="col-lg-3 col-sm-3">
+                <div class="heading">
+                    <h3>Address</h3>
+                </div>
+                <p style="color:#333"><i class="glyphicon glyphicon-map-marker" style="width:20px"></i>PO Box 344</p>
+                <p style="color:#333"><i style="width:20px">&nbsp;&nbsp;&nbsp;&nbsp;</i> Cottleville, MO 63338. USA</p>
+                
+            </div>-->
+            <div class="col-lg-9 col-sm-9">
+                <div class="form-group">
+                    <div id="StatusBar"></div>
+                </div>
+                <div class="form-group">
+                    <input name="ctl00$MainContent$txtName" type="text" id="MainContent_txtName" class="form-control" placeholder="Name" />
+                    <span data-val-controltovalidate="MainContent_txtName" data-val-errormessage="Please Enter Name" data-val-display="Dynamic" id="MainContent_Req1" data-val="true" data-val-evaluationfunction="RequiredFieldValidatorEvaluateIsValid" data-val-initialvalue="" style="color:Red;display:none;">Please Enter Name</span>
+                </div>
+                <div class="form-group">
+                    <input name="ctl00$MainContent$txtEmail" type="text" id="MainContent_txtEmail" class="form-control" placeholder="Email" />
+                    <span data-val-controltovalidate="MainContent_txtEmail" data-val-errormessage="Please Enter Email Id" data-val-display="Dynamic" id="MainContent_RequiredFieldValidator1" data-val="true" data-val-evaluationfunction="RequiredFieldValidatorEvaluateIsValid" data-val-initialvalue="" style="color:Red;display:none;">Please Enter Email Id</span>
+                    <span data-val-controltovalidate="MainContent_txtEmail" data-val-errormessage="Please Enter Valid Email ID" data-val-display="Dynamic" data-val-validationGroup="vgSubmit" id="MainContent_RegularExpressionValidator2" class="requiredFieldValidateStyle" data-val="true" data-val-evaluationfunction="RegularExpressionValidatorEvaluateIsValid" data-val-validationexpression="\w+([-+.&#39;]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" style="color:Red;display:none;">Please Enter Valid Email ID</span>
+                </div>
+                <div class="form-group">
+                    <textarea name="ctl00$MainContent$txtMessage" rows="2" cols="20" id="MainContent_txtMessage" class="form-control" placeholder="Message" style="height:150px;">
+</textarea>
+                    <span data-val-controltovalidate="MainContent_txtMessage" data-val-errormessage="Please Enter Message" data-val-display="Dynamic" id="MainContent_RequiredFieldValidator2" data-val="true" data-val-evaluationfunction="RequiredFieldValidatorEvaluateIsValid" data-val-initialvalue="" style="color:Red;display:none;">Please Enter Message</span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="ctl00$MainContent$btnSubmit" value="Send" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$MainContent$btnSubmit&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false)" id="MainContent_btnSubmit" class="btn btn-primary" />
+                </div>
+            </div>
+    </div>
+</div>
+{% include 'footer.html' %}

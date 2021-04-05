@@ -1,0 +1,177 @@
+{% load static %}
+{% include 'header.html' %}
+<html>
+
+
+
+<head>
+	 <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"> </script>
+    	<script type="text/javascript" src="{% static 'js/jquery-2.2.3.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/underscore-min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/backbone.js' %}"></script>
+    <link href="{% static 'css/prima.css' %}" rel="stylesheet">
+
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+</head>
+	<title>
+		{{event.Event_Name}} Seat Reservation
+	</title>
+	<body>
+	<style>
+		body{
+		background: floralwhite;
+		}
+	</style>
+		<div class="text-center">
+			<label id='title'>{{event.Event_Name}} SEAT RESERVATION</label>
+			<h3 id="reserved" hidden>{{event.Event_Seats_Sold }}<h4 id="rows" hidden>{{event.Rows}}</h4><h4 id="columns" hidden>{{event.Columns}}</h4><h4 id = "blocked">{{event.Blocked_Seats}}</h4>
+		</div>
+		<form class='form-inline selectionForm'>
+			<div class="form-group required">
+				{% block content %}
+				<label for="name">Name:</label>
+				{% if user %}
+				<h3 style="color: black;">{{user.Name}}</h3>
+				<input type="hidden" class="form-control" id="name" value="{{user.Name}}" />
+				{% else%}
+				<input type="text" class="form-control" id="name" placeholder=""/>
+				{% endif %}
+				{% endblock%}
+			</div>
+			<div class="form-group required">
+				<label for="seats">Number Of Seats:</label>
+
+ 				<input type="number" id='seats' class="form-control" placeholder="Number" required="required"/>
+			</div>
+			<div class="text-center">
+				<button type="button" class="btn btn-primary btn-lg submitBtn" id="submitSelection">Start Selecting</button>
+			</div>
+			<div class="text-center">
+				<font color="Red"><label class="error"></label></font>
+			</div>
+
+		</form>
+		<div class="screen-ui">
+			<div id="screen">
+				<font color="white">SCREEN</font>
+			</div>
+			<script>
+				window.localStorage.clear();
+				var reservedseats=JSON.parse(localStorage.getItem('ReservedSeats'))||[];
+				extra_reserved = document.getElementById('reserved').textContent.trim().split(",") || [];
+				var blocked_seats = JSON.parse(localStorage.getItem('BlockedSeats'))||[];
+				var bs = document.getElementById('blocked').textContent.trim().split(",") || [];
+				var c = parseInt(document.getElementById('columns').textContent);
+			for(i=0;i<extra_reserved.length; i++){
+				var x = extra_reserved[i].charCodeAt(0)%64;
+				var y = extra_reserved[i].replace( /[^\d.]/g, '' );
+				var no = c*(y-1) + x;
+				reservedseats.push(no.toString());
+			}
+			for(var j=0;j<bs.length; j++){
+				var a = bs[j].charCodeAt(0)%64;
+				var b = bs[j].replace( /[^\d.]/g, '' );
+				var ab = c*(b-1) + a;
+				blocked_seats.push(ab.toString());
+			}
+			localStorage.setItem('ReservedSeats',JSON.stringify(reservedseats));
+			localStorage.setItem('BlockedSeats',JSON.stringify(blocked_seats));
+</script>
+			<table class="table" id="table-screen" style="max-width: -webkit-fill-available;" >
+				<thead id="screen-head">
+					<tr>
+			<script type="text/template" id='table-screen-header'>
+							<th></th>
+
+			   				<% _.each(columns,function(item){ %>
+			   					<% if(item==0) {%>
+			            			<th></th>
+			            		<% } else {%>
+			            			<th><%= item %></th>
+			            		<% } %>
+			    			<% }) %>
+			    		</script>
+		    		</tr>
+		    	</thead>
+		    	<tbody id="screen-body">
+		    			<script type="text/template" id='table-screen-body'>
+		    			<% _.each(_.range(1,rows+1),function(row){ %>
+		    				<tr id='table-screen-row'>
+		    					<td><%=row%></td>
+		   			<% _.each(columns,function(column){ %>
+		    						<% var id=(((columns.length)*(row-1))+(_.indexOf(columns,column)+1));var reservedSeats=JSON.parse(localStorage.getItem('ReservedSeats'));var blockedseats = JSON.parse(localStorage.getItem('BlockedSeats')); %>
+			            			<% if(blockedseats!=null && _.indexOf(blockedseats,String(id))!=-1){%>
+			            				<td><img src="/static/img/blocked-seat.png" class="reserved-seat" id="<%=id%>"/></td>
+			            			<% }else if(reservedSeats!=null && _.indexOf(reservedSeats,String(id))!=-1){%>
+			            				<td><img src="/static/img/reserved-seat.png" class="reserved-seat" id="<%=id%>"/></td>
+									<% }else {%>
+			            				<td><img src="/static/img/empty-seat.png" class="empty-seat" id="<%=id%>"/></td>
+			            			<% }}) %>
+
+	    					</tr>
+	    				<% }) %>
+					</script>
+		    	</tbody>
+			</table>
+
+			<div class="text-center">
+				<button type="button" class="btn btn-primary btn-lg submitBtn" id="confirmSelection">Confirm Selection</button>
+				<div class="screen-map">
+				<label for="empty-seat-map">Selected Seat</label>
+				<img src="{% static 'img/booked-seat.png' %}" class="booked-seat-map" id="booked-seat-map">
+				<br/>
+				<label for="">Reserved Seat</label>
+				<img src="{% static 'img/reserved-seat.png' %}" class="reserved-seat-map" id="reserved-seat-map">
+				<br/>
+				<label for="">Empty Seat</label>
+				<img src="{% static 'img/empty-seat.png' %}" class="empty-seat-map" id="empty-seat-map">
+			</div>
+			</div>
+
+		</div>
+		<div class="table-responsive">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Number of Seats</th>
+						<th>Seats</th>
+					</tr>
+				</thead>
+				<tbody id="ticket-sold-info">
+					<script type="text/template" id='table-ticket-info'>
+						<% _.each(items,function(item){%>
+							<tr>
+								<td class = "names"><%item.names%></td>
+								<td class = "numbers"><%-item.numbers%></td>
+								<td class = "seats"><%-item.seats%></td>
+
+							</tr>
+						<%})%>
+						</script>
+						<form action="{% url 'payment' event.Event_Unique_Id %}" method="post" name="form1">
+                   {% csrf_token %}
+               <input type="hidden" id="SeatsDisplay1" name="SeatsDisplay1">
+               <input type="hidden" id="NumberDisplay1" name="NumberDisplay1" value=""/>
+               <input type="hidden" id="NameDisplay1" name="NameDisplay1">
+               <input type="submit" value="Proceed Payment">
+
+						</form>
+
+
+
+				</tbody>
+			</table>
+		</div>
+
+
+	</body>
+	{% include 'footer.html' %}
+
+	<script type="text/javascript" src="{% static 'js/prima.js' %}"></script>
+
+</html>

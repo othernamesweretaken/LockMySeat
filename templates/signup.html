@@ -1,0 +1,242 @@
+{% load static %}
+{% include 'header.html' %}
+
+	
+	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+	
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css' %}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+	
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+
+
+    <!-- Style CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    </head>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<body id="page-top" data-spy="scroll" data-target=".navbar">
+<div id="main-wrapper">
+    <!-- Page Preloader -->
+    <!--div id="preloader">
+        <div id="status">
+            <div class="status-mes"></div>
+        </div>
+    </div-->
+
+
+<body>
+{% block content %}
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+				<form name='signup' class="bg-light" onsubmit = "return validate()" action = "{% url 'sign_up' %}" method ="post">
+					{% csrf_token %}
+					<span class="login100-form-title p-b-33">
+						Account Signup
+					</span>
+
+					<div class="wrap-input100 validate-input" >
+						<input class="input100" type="text" name="Username" placeholder="Username" id ="Username" autocomplete="off">
+						<span id="Username_span" class="text-danger font-weight-bold" ></span>
+					</div>
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="email" placeholder="Email" id="email">
+						<span id="email_span" class="text-danger " ></span>
+					</div>
+
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="Name" placeholder="Name" id="Name">
+						<span id="name_span" class="text-danger " ></span>
+					</div>
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="Surname" placeholder="Surname" id="Surname">
+						<span id="surname_span" class="text-danger " ></span>
+					</div>
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="Contact" placeholder="Contact" id="Contact">
+						<span id="Contact_span" class="text-danger " ></span>
+					</div>
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="Country" placeholder="Country" id="Country">
+						<span id="Country_span" class="text-danger font-weight-bold" ></span>
+					</div>
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="State" placeholder="State" id="State">
+						<span id="State_span" class="text-danger " ></span>
+					</div>
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="City" placeholder="City" id="City">
+						<span id="City_span" class="text-danger " ></span>
+					</div>
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="password" name="pass" placeholder="Password" id="pass1">
+						<span id="pass_span" class="text-danger " ></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input">
+						<input class="input100" type="password" name="pass" placeholder=" Re-type Password" id="pass2">
+						<span id="conpass_span" class="text-danger " ></span>
+
+					</div>
+
+
+					<div class="container-login100-form-btn m-t-20">
+						<button class="login100-form-btn" type="submit" value="submit" name="submit" >
+							Sign in
+						</button>
+					</div>
+
+<script type="text/javascript">
+	function validate(){
+	 var Username = document.getElementById('Username').value;
+	 var name = document.getElementById('Name').value;
+	 var surname = document.getElementById('Surname').value;
+	 var Contact = document.getElementById('Contact').value;
+	 var email = document.getElementById('email').value;
+	 var pass = document.getElementById('pass1').value;
+	 var conpass = document.getElementById('pass2').value;
+	 var Country= document.getElementById('Country').value;
+	 var State = document.getElementById('State').value;
+	 var City = document.getElementById('City').value;
+
+      if(Username == "" || Username == "admin"){
+      	   document.getElementById('Username_span').innerHTML ="**Empty field or username already taken**";
+      	   return false;
+      }
+      if((Username.length <= 3) || (Username.length >=25))
+      {
+      	document.getElementById('Username_span').innerHTML ="**length must be between 3 and 25**";
+      	   return false;
+      }
+
+        if(email == ""){
+      	   document.getElementById('email_span').innerHTML ="**Email id cannot be empty**";
+      	   return false;
+      }
+      if(email.indexOf('@') <= 0)
+      {
+      	document.getElementById('email_span').innerHTML ="**@ at Invalid position**";
+      	   return false;
+      }
+      if((email.charAt(email.length-4) !='.') && (email.charAt(email.length-3)!='.'))
+      {
+      	document.getElementById('email_span').innerHTML ="** . at Invalid position**";
+      	   return false;
+      }
+
+      if(name == ""){
+      	   document.getElementById('name_span').innerHTML ="**Name cannot be empty**";
+      	   return false;
+      }
+      if(!isNaN(name)){
+        	document.getElementById('name_span').innerHTML ="**Only characters are allowed**";
+      	   return false;
+      }
+      if(surname == ""){
+      	   document.getElementById('surname_span').innerHTML ="**surname cannot be empty**";
+      	   return false;
+      }
+      if(Contact == ""){
+      	   document.getElementById('Contact_span').innerHTML ="**please enter contact no**";
+      	   return false;
+      }
+      if(isNaN(Contact)){
+        	document.getElementById('Contact_span').innerHTML ="**Only numbers are allowed**";
+      	   return false;
+      }
+       if(Contact.length!=10){
+        	document.getElementById('Contact_span').innerHTML ="**must be 10 digits only**";
+      	   return false;
+      }
+
+      if(Country== ""){
+      	   document.getElementById('Country_span').innerHTML ="**please enter Country name**";
+      	   return false;
+      }
+      if(State == ""){
+      	   document.getElementById('State_span').innerHTML ="**please enter state name**";
+      	   return false;
+      }
+      if(City == ""){
+      	   document.getElementById('City_span').innerHTML ="**please enter city name**";
+      	   return false;
+      }
+
+      if(pass == ""){
+      	   document.getElementById('pass_span').innerHTML ="**password cannot be empty**";
+      	   return false;
+
+      }
+       if((pass.length <= 3) || (pass.length >=25))
+      {
+      	document.getElementById('pass_span').innerHTML ="**length must be between 3 and 25**";
+      	   return false;
+      }
+      if(conpass == ""){
+      	   document.getElementById('conpass_span').innerHTML ="**password cannot be empty**";
+      	   return false;
+      }
+       if((conpass.length <= 3) || (conpass.length >=25))
+      {
+      	document.getElementById('conpass_span').innerHTML ="**length must be between 3 and 25**";
+      	   return false;
+      }
+      if(pass!=conpass)
+      {
+      	 document.getElementById('pass_span').innerHTML ="**Passwords don't match**";
+      	   return false;
+      }
+      return true;
+}
+
+
+	</script>
+
+					<div class="text-center p-t-45 p-b-4">
+						<span class="txt1">
+							Forgot
+						</span>
+
+						<a href="#" class="txt2 hov1">
+							Username / Password?
+						</a>
+					</div>
+
+					<div class="text-center">
+						<span class="txt1">
+							already have an account?
+						</span>
+
+						<a href="{% url 'login' %}" class="txt2 hov1">
+							Login 
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+</body>
+</html>

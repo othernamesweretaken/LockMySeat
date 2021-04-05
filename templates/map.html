@@ -1,0 +1,252 @@
+{% load static %}
+{% include 'header.html' %}
+	
+                <!--<div class="col-lg-4 col-sm-6 text-left" >
+                    <div class="input-group">
+                        <input type="text" placeholder="Enter Email Address to Subscribe." class="form-control pull-right" id="txtSEmail">
+                        <span class="input-group-btn">
+                            <input type="button" class="btn subscribebox" onclick="StoreSubscription();" />
+                        </span>
+                    </div>
+     
+	<!------End Slider ------------>
+  </div>
+    <script type="text/javascript">
+        $('#venues').addClass("active");
+    </script>
+	<!--header-->
+    
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ctl01', 'ctl00', [], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+        <div class="main" style="min-height:600px;">
+        
+
+    <div class="col-lg-9 col-sm-9 text-left">
+    <div id="map" class="col-lg-12" style="height:600px;">
+    <script type="text/javascript">
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 8,
+                marker:true
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBz9_RUMYPhd4SMcNTmd-pYconGZUtiZ2U&callback=initMap" type="text/javascript"></script>
+    </div>
+    </div>
+    <div class="col-lg-3 col-sm-3">
+        <div class="heading">Venues <small class="label label-success"></small></div>
+        
+        <div class="">
+            <div class="inner-addon left-addon">
+                <i class="glyphicon glyphicon-search"></i>
+                <input type="text" id="search" placeholder="Enter Text To Search..." onkeyup="filter(this)" class="form-control" style="border-radius:5px 0px 0px 5px;" />
+            </div>
+        </div>
+        <br />
+    <ul id="venuelist" class="list-group" style="height:500px;overflow:auto">
+    
+    </ul>
+    </div>
+
+        </div>
+
+
+       <!--- <div class="copy footer">
+            <center>
+            <div class="row container">
+                <div  class="col-lg-3 col-md-3 col-sm-3 col-xs-6 text-left" >
+                    <a href="Default" title="TicketDhamaka">
+                        <img style="margin-top: -15px;" src="images/newlogo.png">
+                    </a>
+                    <div class="col-lg-6">
+                        <a href="https://play.google.com/store/apps/details?id=app.com.ticketdhamakaa" target="_blank">
+                            <img src="Images/playstore.png" style="width:100%" />
+                        </a>
+                    </div>
+                    <div class="col-lg-6">
+                        <a href="https://itunes.apple.com/us/app/ticket-dhamaka/id1277542498" target="_blank">
+                            <img src="Images/appstore.png" style="width:100%"/>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 text-left" >
+                    <ul>
+                        <li><p class="title">COMPANY</p></li>
+                        <li><a href="AboutUs">About Us</a></li>
+                        <li><a href="ContactUs">Contact Us</a></li>
+                        <li><a href="https://www.facebook.com/ticketdhamaka" target="_blank">Find us on Facebook</a></li>
+                        <li><a href="https://twitter.com/ticketdhamaka" target="_blank">Find us on Twitter</a></li>
+                        <li><a href="https://plus.google.com/u/2/116620028942181234723" target="_blank">Find us on Google+</a></li>
+                        <li>&nbsp</li>
+                        <li>&nbsp</li>
+                        
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 text-left" >
+                    <ul>
+                        <li><p class="title">SEARCH</p></li>
+                        <li><a href="Events">Events</a></li>
+                        <li><a href="Tours">Tours</a></li>
+                        <li><a href="Venues">Venues</a></li>
+                        <li><a href="Artists">Artists</a></li>
+                        <li>&nbsp</li>
+                        <li>&nbsp</li>
+                        
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 text-left" >
+                    <ul>
+                        <li><p class="title">SUPPORT</p></li>
+                        <li><a href="FAQ">FAQs</a></li>
+                        <li><a href="Privacy">Privacy Policy</a></li>
+                        <li><a href="Terms">Terms of Use</a></li>
+                        <li><a href="Refund">Refund Policy</a></li>
+                        <li>&nbsp</li>
+                        <li>&nbsp</li>
+                        <li>&nbsp</li>
+                    </ul>
+                </div>
+            </div>            
+            </center>
+        </div>
+      <div class="clearfix"></div>
+        <div class="copy footer"  style="background:#313140">
+            <div class="container text-left">
+                <div class="col-lg-10">
+                    <p>Copyright &copy; 2019 <strong>TicketDhamaka.com</strong> All rights reserved.
+                       <span class="pull-right"> 
+                        By continuing past this page, you agree to our <a href="Terms.aspx" style="color:blue">Terms of Use</a> 
+                       </span>
+                    </p>
+                </div>
+                <div class="col-lg-2 text-right">
+                    <a href="https://www.facebook.com/ticketdhamaka" target="_blank"><img src="images/socials-fb.png"  /></a>
+                    <a href="https://twitter.com/ticketdhamaka"  target="_blank"><img src="images/socials-tw.png"  /></a>
+                    <a href="#"  target="_blank"><img src="images/socials-insta.png"  /></a>
+                    <a href="https://plus.google.com/u/2/116620028942181234723"  target="_blank"><img src="images/socials-g.png"  /></a>
+                </div>
+            </div>
+        </div>-->
+        
+<script>
+    $(document).ready(function () {
+        $(".event-name a").mouseover(function () {
+            console.log(this.offsetWidth);
+            console.log(this.parentNode.offsetWidth);
+            if (this.offsetWidth > this.parentNode.offsetWidth) {
+                $(this).animate({ 'left': '-' + (this.offsetWidth) + 'px' }, 10000, function () { this.style.left = '0px'; });
+            }
+        }).mouseout(function () {
+            $(this).stop();
+            this.style.left = '0px';
+        });
+    });
+</script>    
+
+    </form>
+    <script type="text/javascript">
+        $(function () {
+            $.ui.autocomplete.prototype._renderItem = function (ul, item) {
+                item.label = item.label.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(this.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>");
+                return $("<li></li>")
+                        .data("item.autocomplete", item)
+                        .append("<a>" + item.label + "</a>")
+                        .appendTo(ul);
+            };
+            $("#txtEventId").autocomplete({
+                source: function (request, response) {
+                    var param = { name: $("#txtEventId").val() };
+                    $.ajax({
+                        url: '/WCF/Service.svc/GetEventListByName',
+                        data: JSON.stringify(param),
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            console.log(data.GetEventListByNameResult);
+                            response($.map(data.GetEventListByNameResult, function (item) {
+                                return { label: item.Name, id: item.EventId }
+                            }))
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert(textStatus);
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    //console.log(ui.item);
+                    location.href = "Registration?EventId=" + ui.item.id
+                }
+                //minLength: 3
+            });
+        });
+        function validateEmail(email) {
+            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        }
+        var btn = "Subscribe";
+        function StoreSubscription() {
+            //var btn = $("#btnSubscribe").val();
+            if (btn == "Subscribe") {
+                var email = $("#txtSEmail").val();
+                if (email.trim() == "") {
+                    alert("Please Enter Email Address");
+                    return false;
+                }
+                if (!validateEmail(email)) {
+                    alert("Enter Valid Email Address");
+                    return false;
+                }
+                $("#btnSubscribe").val("Saving...");
+                $("#btnSubscribe").attr("disabled", false);
+                $.ajax({
+                    type: "POST",
+                    url: "Default.aspx/StoreSubcription",
+                    data: '{\"emailid\" : \"' + email + '\"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        console.log(response);
+                        var resp = response.d;
+                        if (response.d == "OK") {
+                            alert("Subscribe Successfully");
+                            $("#txtSEmail").val("");
+                        }
+                        else if (response.d == "OK-1") {
+                            alert("Email Already Subscribed");
+                            $("#txtSEmail").val("");
+                        }
+                        else {
+                            alert("Error in sending mail. Pleast Try after some time.");
+                        }
+
+                        $("#btnSubscribe").val("Subscribe");
+                        $("#btnSubscribe").attr("disabled", false);
+                    },
+                    failure: function (response) {
+                        alert(response.d);
+                        $("#btnSubscribe").val("Subscribe");
+                        $("#btnSubscribe").attr("disabled", false);
+                    },
+                    error: function (response) {
+                        alert(response.d);
+                        $("#btnSubscribe").val("Subscribe");
+                        $("#btnSubscribe").attr("disabled", false);
+                    }
+                });
+                return false;
+            }
+        }
+    </script>
+</body>
+<br>
+</html>
+
+  {% include 'footer.html' %}

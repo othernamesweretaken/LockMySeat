@@ -1,0 +1,55 @@
+{% load static %}
+{% include 'header.html'%}
+<html>   <!------End Slider ------------>
+<body>
+<style>
+    body
+   {
+    background: floralwhite;
+    text-align: center;
+
+    }
+   h2, h3, h4, h5 {
+    color: #a94442;
+    text-align: left;
+    position: relative;
+    margin: auto;
+    }
+</style>
+<div class="my">
+    <div><h1 style="font-weight: bold;color: #a94442;">{{event1.Event_Name}}</h1></div>
+<img src="{{ event1.Event_Poster.url }}" alt="Image" style="height: 300px; width: 300px; ">
+
+      <h2>Description:- {{ event1.Event_Description}}</h2>
+    <h3>Artist:- {{event1.Artist_Name}}</h3>
+    <h3>Location:- {{event1.Event_Venue}}</h3>
+     <h3>  Event Price:- {{event1.Event_Price}}</h3>
+      <h3>  Event Date:- {{ event1.Event_Date }}</h3>
+    <h3> Event Time:- {{ event1.Event_Time | slice:"1"}} </h3>
+
+<!--<strong><tr><h3><td> Event Name </td><td style="font-size: 20pt; font-weight: bold;">:- {{event1.Event_Name}}</td></h3></tr>-->
+<!--    <tr><td><td> ___________</td></td></tr>-->
+<!--    <tr><h3><td> Event Description </td><td >:- {{ event1.Event_Description}}</td></h3></tr>-->
+<!--<tr><h3><td> Event Artist</td><td>:- {{event1.Artist_Name}}</td></h3></tr>-->
+<!--<tr><h3><td> Event Location</td><td>:- {{event1.Event_Venue}}</td></h3></tr>-->
+<!--<tr><h3><td> Event Price</td><td>:- {{event1.Event_Price}}</td></h3></tr>-->
+<!--    <tr><h3><td> Event time</td><td>:- {{ event1.Event_Date }}</td></h3></tr></strong>-->
+<!--<tr><h3><td> Event time</td><td>:- {{ event1.Event_Time | slice:"1"}}</td></h3></tr></strong>-->
+<!--</table>-->
+
+{%block content%}
+{% if event1.Event_Status == 'InActive'%}
+
+<h3> This is event is currently inactive. Mail to admin@gmail.com </h3>
+{% else %}
+<br>
+<a href="{% url 'reserve' event1.Event_Unique_Id %}" ><button style="color: #D90000;"><b>Buy tickets</b></button></a>
+{%endif %}
+{% endblock%}
+    </div>
+</body>
+<br>
+<br>
+{% include 'footer.html' %}
+
+</html>

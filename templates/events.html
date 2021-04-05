@@ -1,0 +1,170 @@
+{% load static %}
+{% include 'header.html' %}
+<body id="page-top" data-spy="scroll" data-target=".navbar">
+<div id="main-wrapper">
+    <!-- Page Preloader -->
+    <!--div id="preloader">
+        <div id="status">
+            <div class="status-mes"></div>
+        </div>
+    </div-->
+
+    <!------End Slider ------------>
+ 
+    <script type="text/javascript">
+        $('#tours').addClass("active");
+    </script>
+    <!--header-->
+    
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ctl01', 'ctl00', [], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+       <!--  <div class="main" style="min-height:600px;">
+        
+<div class="wrap">
+    <br>
+    <div class="section group">
+        <div class="heading">EVENTS</div>
+        <br><br>
+        <div class="box col-lg-4 col-sm-6 col-xs-12">
+        <div class="card">
+            
+        </div>
+            </div>
+        
+        <div class="box col-lg-4 col-sm-6 col-xs-12"-->
+
+        <h1><center style=" color: red">Here is the list of the latest events.</center> </h1>
+         <div>
+{%if all_events %}
+
+        {%for event in all_events%}
+
+
+                    <figure class="thumbnail col-sm-6 col-md-3 col-lg-3">
+                        <a href="{% url 'details' event.Event_Unique_Id %}"><img src="{{ event.Event_Poster.url }}" alt="Image" style="height: 300px; width: 300px;"></a>
+                        <figcaption class="caption text-center">
+                            <h3><a href ="{% url 'details' event.Event_Unique_Id %}">{{event.Event_Name}}</a>
+<!--                                <small>Singing</small>-->
+                            </h3>
+                           
+                        </figcaption>
+                    </figure>
+
+{% endfor%}
+         </div>
+{%else%}
+
+<h3 style=" color: red;">You don't have any events</h3>
+{%endif%}
+<!--<a href="{% url 'add' %}"><button type="button">Add Event</button></a>-->
+</div>
+
+
+</body>
+<br>
+
+{% include 'footer.html' %}
+    <script type="text/javascript">
+        $(function () {
+            $.ui.autocomplete.prototype._renderItem = function (ul, item) {
+                item.label = item.label.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(this.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>");
+                return $("<li></li>")
+                        .data("item.autocomplete", item)
+                        .append("<a>" + item.label + "</a>")
+                        .appendTo(ul);
+            };
+            $("#txtEventId").autocomplete({
+                source: function (request, response) {
+                    var param = { name: $("#txtEventId").val() };
+                    $.ajax({
+                        url: '/WCF/Service.svc/GetEventListByName',
+                        data: JSON.stringify(param),
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            console.log(data.GetEventListByNameResult);
+                            response($.map(data.GetEventListByNameResult, function (item) {
+                                return { label: item.Name, id: item.EventId }
+                            }))
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert(textStatus);
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    //console.log(ui.item);
+                    location.href = "Registration?EventId=" + ui.item.id
+                }
+                //minLength: 3
+            });
+        });
+        function validateEmail(email) {
+            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        }
+        var btn = "Subscribe";
+        function StoreSubscription() {
+            //var btn = $("#btnSubscribe").val();
+            if (btn == "Subscribe") {
+                var email = $("#txtSEmail").val();
+                if (email.trim() == "") {
+                    alert("Please Enter Email Address");
+                    return false;
+                }
+                if (!validateEmail(email)) {
+                    alert("Enter Valid Email Address");
+                    return false;
+                }
+                $("#btnSubscribe").val("Saving...");
+                $("#btnSubscribe").attr("disabled", false);
+                $.ajax({
+                    type: "POST",
+                    url: "Default.aspx/StoreSubcription",
+                    data: '{\"emailid\" : \"' + email + '\"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        console.log(response);
+                        var resp = response.d;
+                        if (response.d == "OK") {
+                            alert("Subscribe Successfully");
+                            $("#txtSEmail").val("");
+                        }
+                        else if (response.d == "OK-1") {
+                            alert("Email Already Subscribed");
+                            $("#txtSEmail").val("");
+                        }
+                        else {
+                            alert("Error in sending mail. Pleast Try after some time.");
+                        }
+
+                        $("#btnSubscribe").val("Subscribe");
+                        $("#btnSubscribe").attr("disabled", false);
+                    },
+                    failure: function (response) {
+                        alert(response.d);
+                        $("#btnSubscribe").val("Subscribe");
+                        $("#btnSubscribe").attr("disabled", false);
+                    },
+                    error: function (response) {
+                        alert(response.d);
+                        $("#btnSubscribe").val("Subscribe");
+                        $("#btnSubscribe").attr("disabled", false);
+                    }
+                });
+                return false;
+            }
+        }
+    </script>
+   
+
+
+</html>
+
+

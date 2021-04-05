@@ -1,0 +1,55 @@
+{% load static %}
+{% load custom_tags %}
+{% include 'dashboard.html' %}
+
+    </head>
+{% block 'body' %}<h1>
+{% if tickets %}
+    {% for i in tickets %}
+    {% if i.Payment_Status == 'Completed' %}
+    <style> 
+        .main { 
+            font-size:32px; 
+            font-weight:bold; 
+            text-align:center; 
+        } 
+        #box { 
+            padding-top:10px; 
+            width: 400px; 
+            height: 300px; 
+            border: 10px solid #4A3F03 ; 
+            margin: 10px; 
+            text-align:center; 
+            font-size:32px; 
+            font-weight:bold;
+            background-color: #0A8481;
+        } 
+        </style>
+        <div id="box" class="col-md-3 col-lg-3 col-sm-3" style=" background-image: url('static/img/about/23.jpg');">Event Details
+          <a href="{% url 'details' i.Event_Unique_Id %}">
+        <div>
+        <h4 align="left"> Event Name :- {{i.Event_Name }}</h4>
+
+        <h4 align="left">Number of tickets :-{{i.Number_of_tickets }} </h4>
+        <h4 align="left"> Seats :- {{ i.Seat_no }}</h4>
+        <h4 align="left">
+            Registration Time :- {{i.Ticket_Registration_Time}}
+        </h4>
+            {% now "Y-m-d" as todays_date %}
+            {% if event_dates|get_item:i.Event_Unique_Id %}
+            Upcoming Event
+            
+            {% endif %}
+        </div>
+        </a></div>
+       {% endif %}
+   
+    {% endfor %}
+   </div>
+{% else %}
+  <h1 style="color: black">  No tickets booked. </h1>
+{%endif%}
+{% endblock %}
+</h1>
+</body>
+</html>
